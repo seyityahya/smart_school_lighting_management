@@ -3,6 +3,6 @@ const { ledAc } = require("../controllers/ledAc");
 
 const router = express.Router();
 
-router.get("/", ledAc);
+router.put("/", ledAc);
 
 module.exports = router;
