@@ -1,14 +1,13 @@
 const User = require("../models/User");
 
 const register = async (req, res, next) => {
-  const name = "enes gücükoğlu4";
-  const email = "enes4@gmail.com";
-  const password = "123456";
+  const { name, email, password, role } = req.body;
 
   const user = await User.create({
     name,
     email,
     password,
+    role,
   });
   res.status(200).json({
     success: true,
