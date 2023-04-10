@@ -1,8 +1,8 @@
 const User = require("../models/User");
 
 const register = async (req, res, next) => {
-  const name = "enes gücükoğlu";
-  const email = "enes@gmail.com";
+  const name = "enes gücükoğlu4";
+  const email = "enes4@gmail.com";
   const password = "123456";
 
   const user = await User.create({
