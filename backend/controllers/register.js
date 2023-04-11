@@ -15,6 +15,11 @@ const register = async (req, res, next) => {
   });
 };
 
+const errorTest = async (req, res, next) => {
+  throw new Error("Bir hata oluştu");
+};
+
 module.exports = {
   register,
+  errorTest,
 };
