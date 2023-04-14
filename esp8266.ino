@@ -3,7 +3,7 @@
 
 const char* ssid = "seyit1";
 const char* password2 = "seyityahya4324";
-const char* serverAddress = "http://localhost:5000/api/auth/register";
+const char* serverAddress = "http://localhost:5000/auth/register";
 
 
 void setup() {
@@ -22,10 +22,11 @@ void setup() {
 
 void loop() {
   // Örnek sensör verisi
+  String email = "deneme@deneme.com";
+  String password = "12345689";
   String name = "enes gücük";
-  String email = "enes@gmail.com";
-  String role = "admin";
-  String password = "123456";
+  String role = "user";
+
 
   // HTTP POST isteği oluştur
   WiFiClient wifiClient; 
@@ -33,8 +34,10 @@ void loop() {
   http.begin(wifiClient, serverAddress);
   http.addHeader("Content-Type", "application/json");
 
-  String requestBody = String("{\"name\":") + String("\"") + name + String("\"") + String(",\"email\":") + String("\"") + email + String("\"") + String(",\"password\":") + String("\"") + password + String("\"") + String(",\"role\":") +String("\"") + role + String("\"") + String("}");
+
+ String requestBody = String("{\"name\":") + String("\"") + name + String("\"") + String(",\"email\":") + String("\"") + email + String("\"") + String(",\"password\":") + String("\"") + password + String("\"") + String(",\"role\":") +String("\"") + role + String("\"") + String("}");
   int httpResponseCode = http.POST(requestBody);
+
 
   Serial.print("HTTP response code: ");
   Serial.println(httpResponseCode);
