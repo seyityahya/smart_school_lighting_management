@@ -7,10 +7,11 @@ const char* ssid = "seyit1";
 const char* password = "seyityahya4324";
 
 // Aracı sunucu adresi
-const char* serverName = "http://localhost:5000/api/ledAc";
+const char* serverName = "http://172.20.10.5:5000/api/ledAc";
 
 // LED pin numarası
-const int ledPin = 2;
+const int ledPin = D0;
+const int ledPin2 = D1;
 
 void setup() {
   // Seri port başlatma
@@ -26,12 +27,14 @@ void setup() {
 
   // LED pinini çıkış yapma
   pinMode(ledPin, OUTPUT);
+  pinMode(ledPin2, OUTPUT);
 }
 
 void loop() {
   // HTTP isteği oluşturma
   HTTPClient http;
-  http.begin(serverName);
+  WiFiClient client;
+  http.begin(client, serverName);
 
   // HTTP isteği gönderme ve yanıtı alıp yazdırma
   int httpCode = http.GET();
@@ -42,14 +45,19 @@ void loop() {
     // "led_durumu" adlı değişkenin değerine göre LED'i aç veya kapat
     if (payload == "true") {
       digitalWrite(ledPin, HIGH);
+      digitalWrite(ledPin2, LOW);
+      Serial.println( payload);
     } else {
       digitalWrite(ledPin, LOW);
+      digitalWrite(ledPin2, HIGH);
+      Serial.println( payload);
     }
   } else {
     Serial.println("HTTP isteği başarısız.");
+    Serial.println(httpCode);
   }
 
   // HTTP isteğini sonlandırma ve 5 saniye bekleyerek tekrarlama
   http.end();
-  delay(5000);
+  delay(10000);
 }
