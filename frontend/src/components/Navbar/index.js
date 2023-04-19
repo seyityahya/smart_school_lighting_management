@@ -12,7 +12,7 @@ function Navbar() {
         </div>
         <ul className={styles.menu}>
           <li>
-            <Link to="/">Ders Programı</Link>
+            <Link to="/dersprogramı">Ders Programı</Link>
           </li>
         </ul>
       </div>
