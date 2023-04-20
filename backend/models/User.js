@@ -3,10 +3,6 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const UserSchema = new Schema({
-  name: {
-    type: String,
-    required: [true, "Please provide a name"],
-  },
   email: {
     type: String,
     required: true,
@@ -26,22 +22,6 @@ const UserSchema = new Schema({
     minlength: [6, "Please provide a password with min legth : 6"],
     required: [true, "Please provide a password"],
     select: false,
-  },
-  createdAt: {
-    type: Date,
-    default: Date.now,
-  },
-  title: {
-    type: String,
-  },
-  abaut: {
-    type: String,
-  },
-  place: {
-    type: String,
-  },
-  website: {
-    type: String,
   },
 });
 
