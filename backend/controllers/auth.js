@@ -7,19 +7,36 @@ const {
 } = require("../helpers/input/inputHelpers");
 const CustomError = require("../helpers/error/CustomError");
 
-const register = asyncErrorHandler(async (req, res, next) => {
-  const { email, password, role } = req.body;
+// const register = asyncErrorHandler(async (req, res, next) => {
+//   const { email, password, role } = req.body;
 
-  const user = await User.create({
-    email,
-    password,
-    role,
-  });
-  // const user = new User(input);
-  // const data = await user.save();
+//   const user = await User.create({
+//     email,
+//     password,
+//     role,
+//   });
+//   // const user = new User(input);
+//   // const data = await user.save();
 
-  sendJwtToClient(user, res);
-});
+//   sendJwtToClient(user, res);
+// });
+
+const register = async (req, res, next) => {
+  const input = req.body;
+
+  try {
+    const user = new User(input);
+    const data = await user.save();
+    const userData = data.toObject();
+
+    delete userData.password;
+    delete userData.__v;
+
+    sendJwtToClient(data, res);
+  } catch (e) {
+    next(e);
+  }
+};
 
 const login = asyncErrorHandler(async (req, res, next) => {
   const { email, password } = req.body;
