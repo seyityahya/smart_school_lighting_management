@@ -30,6 +30,7 @@ function Signup({ history }) {
           email: values.email,
           password: values.password,
         });
+        console.log(registerResponse);
         login(registerResponse);
         history.push("/");
       } catch (e) {

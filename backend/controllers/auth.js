@@ -6,6 +6,7 @@ const {
   comparePassword,
 } = require("../helpers/input/inputHelpers");
 const CustomError = require("../helpers/error/CustomError");
+
 const register = asyncErrorHandler(async (req, res, next) => {
   const { email, password, role } = req.body;
 
