@@ -2,13 +2,13 @@ const sendJwtToClient = (user, res) => {
   // Generete JWT
   const token = user.generateJwtFromUser();
 
-  const { JWT_COOKIE, NODE_ENV } = process.env;
+  const { JWT_COOKIE } = process.env;
 
   return res
     .status(200)
     .cookie("access_token", token, {
       httpOnly: true,
-      expires: new Date(Date.now() + parseInt(JWT_COOKIE) * 1000),
+      expires: new Date(Date.now() + parseInt(JWT_COOKIE) * 1000 * 60),
       // secure: NODE_ENV === "development" ? false : true,
     })
     .json({
@@ -20,4 +20,8 @@ const sendJwtToClient = (user, res) => {
     });
 };
 
-module.exports = sendJwtToClient;
+const isTokenIncluded = (req) => {
+  return req.headers.authorization && req.headers.authorization;
+};
+
+module.exports = { sendJwtToClient, isTokenIncluded };
