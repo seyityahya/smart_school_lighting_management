@@ -21,7 +21,7 @@ const sendJwtToClient = (user, res) => {
 };
 
 const isTokenIncluded = (req) => {
-  return req.headers.authorization && req.headers.authorization;
+  return req.headers.authorization;
 };
 
 module.exports = { sendJwtToClient, isTokenIncluded };

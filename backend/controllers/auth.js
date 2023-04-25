@@ -35,6 +35,22 @@ const login = asyncErrorHandler(async (req, res, next) => {
   sendJwtToClient(user, res);
 });
 
+const logout = asyncErrorHandler(async (req, res, next) => {
+  return res
+    .status(200)
+    .cookie({
+      httpOnly: true,
+      expires: new Date(Date.now()),
+    })
+    .json({
+      success: true,
+      message: "logout successfull",
+      data: {
+        email: req.user.email,
+      },
+    });
+});
+
 const getUser = (req, res, next) => {
   res.json({
     success: true,
@@ -48,5 +64,6 @@ const getUser = (req, res, next) => {
 module.exports = {
   register,
   login,
+  logout,
   getUser,
 };

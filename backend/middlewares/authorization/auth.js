@@ -11,6 +11,7 @@ const getAccessToRoute = (req, res, next) => {
     );
   }
   const accessToken = req.headers.authorization;
+
   jwt.verify(accessToken, JWT_SECRET_KEY, (err, decoded) => {
     if (err) {
       return next(
