@@ -32,7 +32,7 @@ function Signup({ history }) {
         });
         console.log(registerResponse);
         login(registerResponse);
-        history.push("/");
+        history.push("/profile");
       } catch (e) {
         bag.setErrors({ general: e.response.data.message });
       }

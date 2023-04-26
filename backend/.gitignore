@@ -1,4 +1,3 @@
 node_modules
 google_login.json
-config.env
-config
+.env
