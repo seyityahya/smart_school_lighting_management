@@ -16,8 +16,8 @@ function HomePage() {
               Bu site üzerinden Düzce İlköğretim okulunun ışıklarını kontrol
               edebilir. Okulun Ders Porgramını Girebilir. Ya da
               düzenleyebilirsin. Aynı zamanda istediğin sınıfın ışıklarını
-              kontrol dilebiiğin gibi kontrrol edebilirsin. Bunları Yapabilmen
-              için giriş yapmalısın
+              dilediğin gibi kontrol edebilirsin. Bunları Yapabilmen için giriş
+              yapmalısın.
             </Text>
             <Text mt={10} fontSize="2xl">
               Giriş Yapmak Zorunludur.
@@ -37,7 +37,7 @@ function HomePage() {
         )}
         {loggedIn && (
           <>
-            <Text>Merhaba Hoşgeldin</Text>
+            <Text>Hoşgeldin</Text>
           </>
         )}
       </Box>

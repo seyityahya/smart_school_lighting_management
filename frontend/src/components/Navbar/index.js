@@ -16,6 +16,9 @@ function Navbar() {
           <li>
             <Link to="/dersprogramı">Ders Programı</Link>
           </li>
+          <li>
+            <Link to="/siniflar">Sınıflar</Link>
+          </li>
         </ul>
       </div>
       <div className={styles.right}>

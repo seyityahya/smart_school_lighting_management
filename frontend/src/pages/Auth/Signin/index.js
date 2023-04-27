@@ -30,7 +30,7 @@ function Signin({ history }) {
           password: values.password,
         });
         login(loginResponse);
-        history.push("/profile");
+        history.push("/");
       } catch (e) {
         bag.setErrors({ general: e.response.data.message });
       }
