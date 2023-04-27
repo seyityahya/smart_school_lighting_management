@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Box, Text, Button } from "@chakra-ui/react";
 import { useAuth } from "../../contexts/AuthContext";
+import HomePageComponents from "../../components/HomePageComponents";
 
 function HomePage() {
   const { loggedIn } = useAuth();
@@ -38,6 +39,7 @@ function HomePage() {
         {loggedIn && (
           <>
             <Text>Hoşgeldin</Text>
+            <HomePageComponents />
           </>
         )}
       </Box>
