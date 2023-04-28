@@ -13,8 +13,10 @@ import { useFormik } from "formik";
 import validationSchema from "./validations";
 import { fetchLogin } from "../../../api";
 import { useAuth } from "../../../contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
 
-function Signin({ history }) {
+function Signin() {
+  const navigate = useNavigate();
   const { login } = useAuth();
 
   const formik = useFormik({
@@ -30,7 +32,7 @@ function Signin({ history }) {
           password: values.password,
         });
         login(loginResponse);
-        history.push("/");
+        navigate("/");
       } catch (e) {
         bag.setErrors({ general: e.response.data.message });
       }
