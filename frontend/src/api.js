@@ -51,3 +51,10 @@ export const fetchLogout = async () => {
   );
   return data;
 };
+
+export const fetchLedSinif = async () => {
+  const { data } = await axios.get(
+    `${process.env.REACT_APP_BASE_ENDPOINT}/api/ledAc`
+  );
+  return data;
+};

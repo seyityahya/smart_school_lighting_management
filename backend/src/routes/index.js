@@ -6,6 +6,7 @@ import { Router } from "express";
 // routes
 import ledAc from "./ledAc";
 import auth from "./auth";
+import sinifDurum from "./sinifDurum";
 
 const router = Router();
 
@@ -14,6 +15,7 @@ router.get("/", (req, res) => {
 });
 
 router.use("/ledAc", ledAc);
+router.use("/siniflar", sinifDurum);
 router.use("/auth", auth);
 
 export default router;
