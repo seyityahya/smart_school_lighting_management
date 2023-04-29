@@ -63,4 +63,23 @@ const getList = async (req, res, next) => {
   }
 };
 
-export { create, get, getList, update };
+const allUpdate = async (req, res, next) => {
+  const guncellemeVerileri = req.body;
+  try {
+    const siniflar = await sinifDurum.find({});
+
+    await Promise.all(
+      siniflar.map(async (belge, index) => {
+        await sinifDurum.findByIdAndUpdate(belge._id, guncellemeVerileri, {
+          new: true,
+        });
+      })
+    );
+
+    res.status(200).json({ message: "başarılı" });
+  } catch (e) {
+    next(e);
+  }
+};
+
+export { create, get, getList, update, allUpdate };
