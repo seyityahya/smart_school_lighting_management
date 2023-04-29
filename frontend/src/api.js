@@ -52,6 +52,21 @@ export const fetchLogout = async () => {
   return data;
 };
 
+export const fetchSiniflarList = async () => {
+  const { data } = await axios.get(
+    `${process.env.REACT_APP_BASE_ENDPOINT}/api/siniflar`
+  );
+  return data;
+};
+
+export const updateSinif = async (input, sinif_id) => {
+  const { data } = await axios.put(
+    `${process.env.REACT_APP_BASE_ENDPOINT}/api/siniflar/${sinif_id}`,
+    input
+  );
+  return data;
+};
+
 export const fetchLedSinif = async () => {
   const { data } = await axios.get(
     `${process.env.REACT_APP_BASE_ENDPOINT}/api/ledAc`
