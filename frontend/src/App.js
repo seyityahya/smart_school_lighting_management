@@ -6,7 +6,7 @@ import Signup from "./pages/Auth/Signup/index";
 import DersProgramı from "./pages/DersProgramı/index";
 import HomePage from "./pages/HomePage";
 import ProductedProfile from "./pages/ProductedRoute/ProductProfile";
-import Siniflar from "./pages/Siniflar/index";
+import ProductedSiniflar from "./pages/ProductedRoute/ProductSiniflar";
 
 function App() {
   return (
@@ -18,7 +18,7 @@ function App() {
           <Route path="/signin" element={<Signin />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/dersprogramı" element={<DersProgramı />} />
-          <Route path="/siniflar" element={<Siniflar />} />
+          <Route path="/siniflar" element={<ProductedSiniflar />} />
           <Route path="/profile" element={<ProductedProfile />} />
         </Routes>
       </div>
