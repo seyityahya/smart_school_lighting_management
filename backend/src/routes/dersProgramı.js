@@ -1,10 +1,10 @@
 import express from "express";
 
 const router = express.Router();
-import { create, dersBaslama } from "../controllers/dersProgramı";
+import { create, dersBaslama, dersBitme } from "../controllers/dersProgramı";
 
 router.post("/", create);
 router.get("/baslangic", dersBaslama);
-// router.post("/bitis-gorevi");
+router.get("/bitis", dersBitme);
 
 export default router;
