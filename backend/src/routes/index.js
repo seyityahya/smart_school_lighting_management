@@ -7,6 +7,7 @@ import { Router } from "express";
 import ledAc from "./ledAc";
 import auth from "./auth";
 import sinifDurum from "./sinifDurum";
+import dersProgramı from "./dersProgramı";
 
 const router = Router();
 
@@ -15,6 +16,7 @@ router.get("/", (req, res) => {
 });
 
 router.use("/ledAc", ledAc);
+router.use("/dersProgrami", dersProgramı);
 router.use("/siniflar", sinifDurum);
 router.use("/auth", auth);
 
