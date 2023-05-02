@@ -24,43 +24,31 @@ const create = async (req, res, next) => {
   }
 };
 
-const dersBaslama = async (req, res, next) => {
-  // const saatler = ["19:20", "19:21", "19:22"];
+const dersBaslamaBitis = async (req, res, next) => {
   try {
     const dersler = await dersProgramı.find({});
     const baslangıcSaatleri = dersler.map((item) => item.baslangic);
-    console.log("başlangıç: ", baslangıcSaatleri);
-
-    // const saat = baslama.baslangic;
-    baslangıcSaatleri.forEach((saat) => {
-      const [saatKisim, dakikaKisim] = saat.split(":");
-      const saatDegeri = `${dakikaKisim} ${saatKisim} * * *`;
-
-      cron.schedule(saatDegeri, () => {
-        console.log("Başlama işlemi yapıldı:");
-        // Başlama görevinin işlemlerini burada gerçekleştirin
-      });
-    });
-
-    res.status(200).json("başarılı");
-  } catch (e) {
-    next(e);
-  }
-};
-
-const dersBitme = async (req, res, next) => {
-  try {
-    const dersler = await dersProgramı.find({});
     const bitisSaatleri = dersler.map((item) => item.bitis);
-    console.log("bitis", bitisSaatleri);
+    const birlesikDizi = baslangıcSaatleri.concat(bitisSaatleri);
 
-    bitisSaatleri.forEach((saat) => {
+    console.log("başlangıç: ", baslangıcSaatleri);
+    console.log("bitiş: ", bitisSaatleri);
+    console.log("hepsi: ", birlesikDizi);
+
+    birlesikDizi.forEach((saat) => {
       const [saatKisim, dakikaKisim] = saat.split(":");
       const saatDegeri = `${dakikaKisim} ${saatKisim} * * *`;
 
       cron.schedule(saatDegeri, () => {
-        console.log("Bitiş işlemi Yapıld:");
-        // Başlama görevinin işlemlerini burada gerçekleştirin
+        if (baslangıcSaatleri.includes(saat)) {
+          console.log("Başlama işlemi yapıldı:");
+          // Başlama işlemi için yapılacak işlemler
+        }
+
+        if (bitisSaatleri.includes(saat)) {
+          console.log("Bitiş işlemi yapıldı:");
+          // Bitiş işlemi için yapılacak işlemler
+        }
       });
     });
 
@@ -70,4 +58,4 @@ const dersBitme = async (req, res, next) => {
   }
 };
 
-export { create, dersBaslama, dersBitme };
+export { create, dersBaslamaBitis };
