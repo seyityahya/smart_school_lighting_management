@@ -58,4 +58,13 @@ const dersBaslamaBitis = async (req, res, next) => {
   }
 };
 
-export { create, dersBaslamaBitis };
+const getList = async (req, res, next) => {
+  try {
+    const dersler = await dersProgramı.find({});
+    res.status(200).json(dersler);
+  } catch (e) {
+    next(e);
+  }
+};
+
+export { create, dersBaslamaBitis, getList };
