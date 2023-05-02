@@ -73,3 +73,26 @@ export const fetchLedSinif = async () => {
   );
   return data;
 };
+
+export const fetchDerslerList = async () => {
+  const { data } = await axios.get(
+    `${process.env.REACT_APP_BASE_ENDPOINT}/api/dersProgrami`
+  );
+  return data;
+};
+
+export const fetchDersCreate = async (input) => {
+  const { data } = await axios.post(
+    `${process.env.REACT_APP_BASE_ENDPOINT}/api/dersProgrami/dersUploud`,
+    input
+  );
+
+  return data;
+};
+
+export const fetchSystemStart = async () => {
+  const { data } = await axios.get(
+    `${process.env.REACT_APP_BASE_ENDPOINT}/api/dersProgrami/dersBaslamaBitis`
+  );
+  return data;
+};
