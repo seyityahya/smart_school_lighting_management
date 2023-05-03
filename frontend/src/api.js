@@ -92,7 +92,24 @@ export const fetchDersCreate = async (input) => {
 
 export const fetchSystemStart = async () => {
   const { data } = await axios.get(
-    `${process.env.REACT_APP_BASE_ENDPOINT}/api/dersProgrami/dersBaslamaBitis`
+    `${process.env.REACT_APP_BASE_ENDPOINT}/api/dersProgrami/isikDegisimi`
   );
+  return data;
+};
+
+export const fetchDersUpdate = async (input, ders_id) => {
+  const { data } = await axios.put(
+    `${process.env.REACT_APP_BASE_ENDPOINT}/api/dersProgrami/${ders_id}`,
+    input
+  );
+
+  return data;
+};
+
+export const fetchDersDelete = async (ders_id) => {
+  const { data } = await axios.delete(
+    `${process.env.REACT_APP_BASE_ENDPOINT}/api/dersProgrami/${ders_id}`
+  );
+
   return data;
 };

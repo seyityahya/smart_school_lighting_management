@@ -76,6 +76,7 @@ function HomePageDersler() {
                 <Td>
                   {item.baslangic} - {item.bitis}
                 </Td>
+                <Td>{item.degistiren}</Td>
               </Tr>
             ))}
           </Tbody>
