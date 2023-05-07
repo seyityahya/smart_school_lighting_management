@@ -7,7 +7,8 @@ const char* ssid = "seyit1";
 const char* password = "seyityahya4324";
 
 // Aracı sunucu adresi
-const char* serverName = "http://172.20.10.5:5000/api/ledAc";
+const char* server8A = "http://192.168.1.102:5000/api/siniflar/644cea6d4f3781369cb55fcd";
+const char* server8B = "http://192.168.1.102:5000/api/siniflar/644cea7a4f3781369cb55fce";
 
 // LED pin numarası
 const int ledPin = D0;
@@ -33,25 +34,32 @@ void setup() {
 void loop() {
   // HTTP isteği oluşturma
   HTTPClient http;
+  HTTPClient http2;
   WiFiClient client;
-  http.begin(client, serverName);
+  http.begin(client, server8A);
+  http2.begin(client, server8B);
 
   // HTTP isteği gönderme ve yanıtı alıp yazdırma
   int httpCode = http.GET();
-  if (httpCode > 0) {
-    String payload = http.getString();
-    Serial.println(payload);
+  int httpCode2 = http2.GET();
+  if (httpCode > 0 && httpCode2 > 0) {
+    String durum8A = http.getString();
+    String durum8B = http2.getString();
+    Serial.print("8-A : ");
+    Serial.println(durum8A);
+    Serial.print("8-B : ");
+    Serial.println(durum8B);
 
     // "led_durumu" adlı değişkenin değerine göre LED'i aç veya kapat
-    if (payload == "true") {
-      digitalWrite(ledPin, HIGH);
-      digitalWrite(ledPin2, LOW);
-      Serial.println( payload);
-    } else {
-      digitalWrite(ledPin, LOW);
-      digitalWrite(ledPin2, HIGH);
-      Serial.println( payload);
-    }
+    // if (durum8A == "true") {
+    //   digitalWrite(ledPin, HIGH);
+    //   digitalWrite(ledPin2, LOW);
+    //   Serial.println( durum8A);
+    // } else {
+    //   digitalWrite(ledPin, LOW);
+    //   digitalWrite(ledPin2, HIGH);
+    //   Serial.println( durum8B);
+    // }
   } else {
     Serial.println("HTTP isteği başarısız.");
     Serial.println(httpCode);
