@@ -49,16 +49,33 @@ function Siniflar() {
       </Text>
       <SimpleGrid spacing={10} columns={3} mt={5} width={"60%"} mb={10}>
         {data.map((item) => (
-          <Card key={item._id} maxW={350} bg="blackAlpha.100">
+          <Card key={item._id} maxW={350} bg="blackAlpha.100" boxShadow="lg">
             <CardHeader>
-              <Heading size="md">{item.sinif}</Heading>
+              <Heading display="flex" justifyContent="center" size="md">
+                {item.sinif}
+              </Heading>
             </CardHeader>
             <CardBody>
-              {!item.durum ? <Text>Yanmıyor</Text> : <Text>Yanıyor</Text>}
+              {!item.durum ? (
+                <Box display={"flex"} justifyContent="center" marginTop={5}>
+                  <div className="sonen-isik">
+                    <span></span>
+                    <span></span>
+                  </div>
+                </Box>
+              ) : (
+                <Box display={"flex"} justifyContent="center" marginTop={5}>
+                  <div className="yanan-isik">
+                    <span></span>
+                    <span></span>
+                  </div>
+                </Box>
+              )}
             </CardBody>
-            <CardFooter>
+            <CardFooter display="flex" justifyContent="center">
               {!item.durum ? (
                 <Button
+                  width="50%"
                   colorScheme={"green"}
                   onClick={() => handleChangeTrue(item._id)}
                 >
@@ -66,6 +83,7 @@ function Siniflar() {
                 </Button>
               ) : (
                 <Button
+                  width="50%"
                   colorScheme={"red"}
                   onClick={() => handleChangeFalse(item._id)}
                 >

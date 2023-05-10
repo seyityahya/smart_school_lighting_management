@@ -89,10 +89,9 @@ function DersProgramı() {
                       {item.baslangic} - {item.bitis}
                     </Td>
                     <Td>{item.degistiren}</Td>
-                    <Button mr={5} ml={10} colorScheme={"facebook"}>
-                      düzenle
-                    </Button>
                     <Button
+                      ml={10}
+                      width="80px"
                       colorScheme={"red"}
                       onClick={() => dersDelete(item._id)}
                     >

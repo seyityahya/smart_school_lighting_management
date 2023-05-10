@@ -36,3 +36,61 @@
     transform: rotate(360deg);
   }
 }
+.sonen-isik {
+  position: relative;
+  background-color: #c8c8c8;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.sonen-isik span:nth-child(1) {
+  position: absolute;
+  width: 25px;
+  height: 20px;
+  top: -18px;
+  left: 12px;
+  background-color: red;
+  border-top-left-radius: 50px;
+  border-top-right-radius: 50px;
+}
+
+.sonen-isik span:nth-child(2) {
+  position: absolute;
+  width: 8px;
+  height: 20px;
+  background-color: black;
+  top: -38px;
+  left: 20px;
+}
+
+.yanan-isik {
+  position: relative;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: yellow;
+  border: 2px solid yellow;
+  box-shadow: 0px 0px 5px yellow, 0px 0px 10px yellow, 0px 0px 20px yellow,
+    0px 0px 40px yellow, 0px 0px 80px yellow;
+}
+
+.yanan-isik span:nth-child(1) {
+  position: absolute;
+  width: 25px;
+  height: 20px;
+  top: -18px;
+  left: 12px;
+  background-color: red;
+  border-top-left-radius: 50px;
+  border-top-right-radius: 50px;
+}
+
+.yanan-isik span:nth-child(2) {
+  position: absolute;
+  width: 8px;
+  height: 20px;
+  background-color: black;
+  top: -38px;
+  left: 20px;
+}

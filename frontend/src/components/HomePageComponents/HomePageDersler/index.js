@@ -72,11 +72,15 @@ function HomePageDersler() {
             </Tr> */}
             {data.map((item) => (
               <Tr key={item._id}>
-                <Td>{item.ders}.ders</Td>
-                <Td>
+                <Td pt={1} pb={2}>
+                  {item.ders}.ders
+                </Td>
+                <Td pt={1} pb={2}>
                   {item.baslangic} - {item.bitis}
                 </Td>
-                <Td>{item.degistiren}</Td>
+                <Td pt={1} pb={2}>
+                  {item.degistiren}
+                </Td>
               </Tr>
             ))}
           </Tbody>
