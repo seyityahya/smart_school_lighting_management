@@ -25,6 +25,14 @@ function HomePageSiniflar() {
   if (isError) {
     return <div>Error {error.message}</div>;
   }
+
+  const filteredData = data.filter(
+    (item) => item._id !== "645ccd504c4e0531b8b3804f"
+  );
+  const koridor = data.find((item) => item._id === "645ccd504c4e0531b8b3804f");
+
+  console.log(koridor);
+
   return (
     <Card
       width={"xl"}
@@ -40,10 +48,40 @@ function HomePageSiniflar() {
         <CardHeader>
           <Flex spacing="4">
             <Flex flex="1" gap="4" alignItems="center" flexWrap="wrap">
-              <Box>
-                <Heading borderBottom={"1px"} size="md">
+              <Box width="100%" display="flex" justifyContent="space-between">
+                <Heading borderBottom={"1px"} size="md" mr={10}>
                   Sınıflar
                 </Heading>
+                <Box display="flex" justifyContent="center" mr={2}>
+                  <Heading size="sm">Koridor :</Heading>
+                  {!koridor.durum ? (
+                    <Text
+                      bg={"red.600"}
+                      display="flex"
+                      justifyContent={"center"}
+                      borderRadius={"20px"}
+                      color={"white"}
+                      pl={5}
+                      pr={5}
+                      ml={2}
+                    >
+                      Yanmıyor
+                    </Text>
+                  ) : (
+                    <Text
+                      bg={"green.600"}
+                      display="flex"
+                      justifyContent={"center"}
+                      borderRadius="20px"
+                      color={"white"}
+                      pl={5}
+                      pr={5}
+                      ml={2}
+                    >
+                      Yanıyor
+                    </Text>
+                  )}
+                </Box>
               </Box>
             </Flex>
           </Flex>
@@ -51,7 +89,7 @@ function HomePageSiniflar() {
       </Link>
       <CardBody paddingTop={0}>
         <SimpleGrid spacing={5} columns={3} mt={5} mb={10}>
-          {data.map((item) => (
+          {filteredData.map((item) => (
             <Card key={item._id} maxW={350} bg="blackAlpha.100">
               <CardHeader pt={2} pb={3}>
                 <Heading
