@@ -48,6 +48,10 @@ const dersBaslamaBitis = async (req, res, next) => {
               "http://localhost:5000/api/siniflar/allUpdate",
               { durum: true }
             );
+            const responseKoridor = await axios.put(
+              "http://localhost:5000/api/siniflar/645ccd504c4e0531b8b3804f",
+              { durum: false }
+            );
             console.log("POST isteği başarıyla gönderildi");
           } catch (error) {
             console.error(
@@ -64,6 +68,21 @@ const dersBaslamaBitis = async (req, res, next) => {
               "http://localhost:5000/api/siniflar/allUpdate",
               { durum: false }
             );
+            const responseKoridor = await axios.put(
+              "http://localhost:5000/api/siniflar/645ccd504c4e0531b8b3804f",
+              { durum: true }
+            );
+            if (saat === birlesikDizi[birlesikDizi.length - 1]) {
+              await new Promise((resolve) => setTimeout(resolve, 60000));
+              const responseKoridor = await axios.put(
+                "http://localhost:5000/api/siniflar/645ccd504c4e0531b8b3804f",
+                { durum: false }
+              );
+              setTimeout(function () {
+                // 1 dakika sonra işlemi yap
+              }, 60000);
+            }
+
             console.log("POST isteği başarıyla gönderildi");
           } catch (error) {
             console.error(
