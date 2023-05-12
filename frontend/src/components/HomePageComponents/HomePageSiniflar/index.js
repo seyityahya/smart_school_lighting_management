@@ -31,8 +31,6 @@ function HomePageSiniflar() {
   );
   const koridor = data.find((item) => item._id === "645ccd504c4e0531b8b3804f");
 
-  console.log(koridor);
-
   return (
     <Card
       width={"xl"}

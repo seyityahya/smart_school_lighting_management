@@ -36,6 +36,11 @@ function Siniflar() {
     return <div>Error {error.message}</div>;
   }
 
+  const filteredData = data.filter(
+    (item) => item._id !== "645ccd504c4e0531b8b3804f"
+  );
+  const koridor = data.find((item) => item._id === "645ccd504c4e0531b8b3804f");
+
   return (
     <Box
       width="100%"
@@ -47,8 +52,67 @@ function Siniflar() {
       <Text marginTop={5} fontSize="4xl">
         Sınıflar
       </Text>
+
+      <Card
+        direction={{ base: "column", sm: "row" }}
+        overflow="hidden"
+        variant="outline"
+        width={"60%"}
+        height="200px"
+        display="flex"
+        alignItems="center"
+        bg="blackAlpha.100"
+        boxShadow="lg"
+        pl={"60px"}
+        pr={"60px"}
+        mt={5}
+        mb={5}
+      >
+        <CardHeader>
+          <Heading display="flex" size="md">
+            KORİDOR
+          </Heading>
+        </CardHeader>
+        <CardBody>
+          {!koridor.durum ? (
+            <Box display={"flex"} justifyContent="center" marginTop={5}>
+              <div className="sonen-isik">
+                <span></span>
+                <span></span>
+              </div>
+            </Box>
+          ) : (
+            <Box display={"flex"} justifyContent="center" marginTop={5}>
+              <div className="yanan-isik">
+                <span></span>
+                <span></span>
+              </div>
+            </Box>
+          )}
+        </CardBody>
+        <CardFooter display="flex" justifyContent="center">
+          {!koridor.durum ? (
+            <Button
+              width="100px"
+              colorScheme={"green"}
+              onClick={() => handleChangeTrue(koridor._id)}
+            >
+              Yak
+            </Button>
+          ) : (
+            <Button
+              width="100px"
+              colorScheme={"red"}
+              onClick={() => handleChangeFalse(koridor._id)}
+            >
+              Söndür
+            </Button>
+          )}
+        </CardFooter>
+      </Card>
+
       <SimpleGrid spacing={10} columns={3} mt={5} width={"60%"} mb={10}>
-        {data.map((item) => (
+        {filteredData.map((item) => (
           <Card key={item._id} maxW={350} bg="blackAlpha.100" boxShadow="lg">
             <CardHeader>
               <Heading display="flex" justifyContent="center" size="md">
