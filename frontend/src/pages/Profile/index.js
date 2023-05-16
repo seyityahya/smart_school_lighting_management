@@ -1,7 +1,21 @@
 import React from "react";
 import { useAuth } from "../../contexts/AuthContext";
-import { Text, Button, Alert, AlertIcon, Box } from "@chakra-ui/react";
+import {
+  Text,
+  Button,
+  Alert,
+  AlertIcon,
+  Card,
+  CardBody,
+  Image,
+  Stack,
+  Heading,
+  Divider,
+  CardFooter,
+  Box,
+} from "@chakra-ui/react";
 import { Link } from "react-router-dom";
+import avatar from "../../photo/avatar.png";
 
 function Profile() {
   const { user, logout, loggedIn } = useAuth();
@@ -31,23 +45,67 @@ function Profile() {
         </>
       )}
       {loggedIn === true && (
-        <>
-          <Text fontSize={28} fontWeight={700}>
-            Profile
-          </Text>
-          <Box mt={4}>
-            <Text fontSize={20}>email: {user.email}</Text>
-            <Text fontSize={20}>role: {user.role}</Text>
-          </Box>
-
-          <br />
-          <br />
-          <Link to="/">
-            <Button colorScheme="pink" variant="solid" onClick={handleLogout}>
-              Logout
-            </Button>
-          </Link>
-        </>
+        <Box width="100%" display="flex" justifyContent="center" mt="30px">
+          <Card maxW="md" width="100%" display="flex" justifyContent="center">
+            <CardBody
+              display="flex"
+              justifyContent="center"
+              flexDirection="column"
+            >
+              <Box display="flex" justifyContent="center">
+                <Image
+                  width="200px"
+                  display="flex"
+                  justifyContent="center"
+                  src={avatar}
+                  alt="Green double couch with wooden legs"
+                  objectFit="cover"
+                  opacity="0.5"
+                  borderRadius="50%"
+                />
+              </Box>
+              <Stack mt="10" spacing="3">
+                <Heading
+                  display="flex"
+                  justifyContent="center"
+                  size="md"
+                  mt="5"
+                  mb="5"
+                >
+                  {user.email}
+                </Heading>
+                <Box display="flex" justifyContent="center">
+                  <Heading color="blue.500" size="sm">
+                    Kullanıcı Yetkisi :
+                  </Heading>
+                  <Heading ml="5px" size="sm">
+                    {user.role === "admin" ? (
+                      <Text>Yetkili</Text>
+                    ) : (
+                      <Text>Kullanıcı</Text>
+                    )}
+                  </Heading>
+                </Box>
+                <Text width="100%" display="flex" justifyContent="center">
+                  Eğer rolünüz yetkili değilse sistem yöneticisinden yetki talep
+                  edebilirsiniz. Yetkili olmayan kullanıcılar ışıkları kontrol
+                  edemezler sadece gözlemleyebilirler.
+                </Text>
+              </Stack>
+            </CardBody>
+            <Divider />
+            <CardFooter display="flex" justifyContent="center">
+              <Button
+                width="40%"
+                onClick={handleLogout}
+                variant="solid"
+                colorScheme="blue"
+              >
+                Çıkış Yap
+              </Button>
+            </CardFooter>
+          </Card>
+        </Box>
       )}
     </div>
   );
