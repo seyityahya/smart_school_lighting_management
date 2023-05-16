@@ -7,9 +7,9 @@ const char* ssid = "seyit1";
 const char* password = "seyityahya4324";
 
 // Aracı sunucu adresi
-const char* server8A = "http://172.16.101.22:5000/api/siniflar/644cea6d4f3781369cb55fcd";
-const char* server8B = "http://172.16.101.22:5000/api/siniflar/644cea7a4f3781369cb55fce";
-const char* serverKoridor = "http://172.16.101.22:5000/api/siniflar/645ccd504c4e0531b8b3804f";
+const char* server8A = "http://192.168.1.104:5000/api/siniflar/644cea6d4f3781369cb55fcd";
+const char* server8B = "http://192.168.1.104:5000/api/siniflar/644cea7a4f3781369cb55fce";
+const char* serverKoridor = "http://192.168.1.104:5000/api/siniflar/645ccd504c4e0531b8b3804f";
 
 // LED pin numarası
 const int ledPin = D1;
@@ -48,17 +48,20 @@ void loop() {
   int httpCode = http.GET();
   int httpCode2 = http2.GET();
   int httpCode3 = http3.GET();
+  int ldrValue = analogRead(A0);
 
   if (httpCode > 0 && httpCode2 > 0 && httpCode3 > 0) {
     String durum8A = http.getString();
     String durum8B = http2.getString();
     String durumKoridor = http3.getString();
-    Serial.print("8-A : ");
-    Serial.println(durum8A);
-    Serial.print("8-B : ");
-    Serial.println(durum8B);
-    Serial.print("Koridor : ");
-    Serial.println(durumKoridor);
+    // Serial.print("8-A : ");
+    // Serial.println(durum8A);
+    // Serial.print("8-B : ");
+    // Serial.println(durum8B);
+    // Serial.print("Koridor : ");
+    // Serial.println(durumKoridor);
+    Serial.print("Isik Durum : ");
+    Serial.println(ldrValue);
 
     // "led_durumu" adlı değişkenin değerine göre LED'i aç veya kapat
     if (durum8A == "true") {
@@ -73,7 +76,7 @@ void loop() {
     else {
       digitalWrite(ledPin2, LOW);
     }
-    if (durumKoridor == "true"){
+    if (ldrValue > 512 && durumKoridor == "true") {
       digitalWrite(ledPin3, HIGH);
     }
     else {
