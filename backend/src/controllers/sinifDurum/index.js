@@ -1,6 +1,7 @@
 import sinifDurum from "../../models/Siniflar";
 import Boom from "boom";
 import ValidationSchema from "./validation";
+import dersProgramı from "../../models/dersProgrami";
 
 const create = async (req, res, next) => {
   const input = req.body;
@@ -54,6 +55,28 @@ const update = async (req, res, next) => {
   }
 };
 
+const updateFiveMinute = async (req, res, next) => {
+  const { sinif_id } = req.params;
+  try {
+    const update = await sinifDurum.findByIdAndUpdate(
+      sinif_id,
+      { durum: true },
+      { new: true }
+    );
+    res.json(update);
+
+    setTimeout(async () => {
+      const secondUpdate = await sinifDurum.findByIdAndUpdate(
+        sinif_id,
+        { durum: false },
+        { new: true }
+      );
+    }, 15000);
+  } catch (e) {
+    next(e);
+  }
+};
+
 const getList = async (req, res, next) => {
   try {
     const siniflar = await sinifDurum.find({});
@@ -82,4 +105,4 @@ const allUpdate = async (req, res, next) => {
   }
 };
 
-export { create, get, getList, update, allUpdate };
+export { create, get, getList, update, allUpdate, updateFiveMinute };

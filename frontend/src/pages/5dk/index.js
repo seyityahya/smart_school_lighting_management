@@ -11,7 +11,7 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 import { useQuery } from "react-query";
-import { fetchSiniflarList } from "../../api";
+import { fetchSiniflarList, updateFiveMinute } from "../../api";
 
 function ErkenIsik() {
   const { isLoading, isError, data, error } = useQuery(
@@ -30,7 +30,10 @@ function ErkenIsik() {
     (item) => item._id !== "645ccd504c4e0531b8b3804f"
   );
 
-  const handleOpenFiveMinute = async () => {};
+  const handleOpenFiveMinute = async (sinif_id) => {
+    updateFiveMinute(sinif_id);
+    window.location.reload();
+  };
 
   return (
     <Box
@@ -76,12 +79,14 @@ function ErkenIsik() {
                   colorScheme={"green"}
                   onClick={() => handleOpenFiveMinute(item._id)}
                 >
-                  Yak
+                  5 dk
                 </Button>
               ) : (
-                <Button width="50%" colorScheme={"red"} cursor="not-allowed">
-                  Söndür
-                </Button>
+                <Button
+                  width="50%"
+                  colorScheme={"red"}
+                  cursor="not-allowed"
+                ></Button>
               )}
             </CardFooter>
           </Card>
