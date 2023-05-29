@@ -19,6 +19,9 @@ function Navbar() {
           <li>
             <Link to="/siniflar">Sınıflar</Link>
           </li>
+          <li>
+            <Link to="/5dk">5 dk</Link>
+          </li>
         </ul>
       </div>
       <div className={styles.right}>

@@ -7,6 +7,7 @@ import HomePage from "./pages/HomePage";
 import ProductedProfile from "./pages/ProductedRoute/ProductProfile";
 import ProductedSiniflar from "./pages/ProductedRoute/ProductSiniflar";
 import ProductedDersProgrami from "./pages/ProductedRoute/ProductDersProgrami";
+import ErkenIsik from "./pages/5dk";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="/siniflar" element={<ProductedSiniflar />} />
           <Route path="/profile" element={<ProductedProfile />} />
           <Route path="/dersprogramı" element={<ProductedDersProgrami />} />
+          <Route path="/5dk" element={<ErkenIsik />} />
         </Routes>
       </div>
     </>
